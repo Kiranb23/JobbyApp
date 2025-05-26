@@ -2,9 +2,18 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html
+    destination: /home/ec2-user/JobbyApp
+
 hooks:
-  AfterInstall:
-    - location: scripts/install.sh
+  BeforeInstall:
+    - location: scripts/clean.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/start.sh
+      timeout: 300
+      runas: ec2-user
