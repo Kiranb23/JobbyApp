@@ -5,6 +5,7 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
+      - nvm use 20
       - npm install
   build:
     commands:
